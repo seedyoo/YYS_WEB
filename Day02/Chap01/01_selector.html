@@ -7,14 +7,33 @@
     <title>Selector</title>
 
     <style>
+
+        article { border: 3px solid orange;}
+
         /* 하위 선택자  */
+        /* 해당 요소 내부에 있는 요소를 선택 */
+        /* (요소) (요소) : 띄어쓰기를 한 계층으로 구분 */
         /* TODO: 여기에 작성해보세요 */
-    
+        article section ul {
+            /* (스타일 속성) : (속성값); */
+            color: red;
+        }
+
         /* 자식 선택자  */
+        /* 바로 밑의 있는 하위 요소만 */
+        /* (기호 : > ) */
         /* TODO: 여기에 작성해보세요 */
+        article > section ul {
+            color: blue;
+        }
 
         /* 인접 선택자 */
+        /* A + B : A와 인접한 요소 B를 선택 */
         /* TODO: 여기에 작성해보세요 */
+        h1 + h3 {
+            color: cornflowerblue;
+            font-size: 30px;
+        }
 
         /* 형제자매 선택자 */
         /* TODO: 여기에 작성해보세요 */
