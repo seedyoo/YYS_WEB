@@ -44,7 +44,7 @@
     <hr>
 
     <form action="input" method="post">
-        ID          : <input type="text" name="id"> <br>
+        ID          : <input type="text" name="id" value="human"> <br>
         PW          : <input type="password" name="password"> <br>
         email       : <input type="email" name="email"> <br>
         url         : <input type="url" name="url"> <br>
@@ -61,16 +61,32 @@
 
         checkbox(취미) :
                     <label for="exercise">운동</label>
-                    <input type="text" name="hobby" id="exercise" value="exercise">
+                    <input type="checkbox" name="hobby" id="exercise" value="exercise">
 
                     <label for="movie">영화감상</label>
-                    <input type="text" name="hobby" id="movie" value="movie">
+                    <input type="checkbox" name="hobby" id="movie" value="movie">
 
                     <label for="book">독서</label>
-                    <input type="text" name="hobby" id="book" value="book">
+                    <input type="checkbox" name="hobby" id="book" value="book">
                     <br>
 
+        date            : <input type="date" name="date"> <br>
+        month           : <input type="month" name="month"> <br>
+        time            : <input type="time" name="time"> <br>
+        datetime-local  : <input type="datetime-local" name="datetime-local"> <br>
 
+        number          : <input type="number" name="number" min="1" max="100" step="1"> <br>
+        range           : <input type="range" name="range" min="1" max="100" step="1"> <br>
+
+        <label for="email2">이메일 : </label>
+        <input type="text" name="eamil2" id="eamil2">
+        @
+        <select name="domain" id="domain">
+            <option value="1">naver.com</option>
+            <option value="2">nate.com</option>
+            <option value="3">kakao.com</option>
+            <option value="4">gmail.com</option>
+        </select>
     </form>
 
 
