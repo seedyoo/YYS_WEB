@@ -43,6 +43,19 @@
     1.0~X.0 : 배율의 크기만큼 확대
 */
 
+.scale1:hover { transform: scale(2); }
+.scale2:hover { transform: scaleX(2); }
+.scale3:hover { transform: scaleY(2); }
 
 
 /* 이미지 확대 박스 적용하기 */
+.img-box { overflow: hidden; height: 158px; }
+.img-box { width: 100%; transition: all 0.5s; }
+.img-box img:hover {
+    transform: scale(1.2);
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+
+
