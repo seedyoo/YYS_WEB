@@ -52,3 +52,20 @@ li:hover {
 }
 
 .item img { width: 100% }
+
+
+/* flex */
+.flex-container {
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 40px;
+    column-gap: 20px;
+}
+
+.flex-container img {
+    width: calc(100% / 3 - 40px);
+    height: auto;
+    object-fit: cover;
+}
