@@ -1,0 +1,39 @@
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    border: 3px dashed orange;
+}
+
+/* container * item */
+.flex-container {
+    display: flex;
+    border: 1px solid lightcoral;
+}
+
+.item {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    padding: 20px;
+    font-size: 40px;
+    line-height: 60px;
+    text-align: center;
+    background-color: cornflowerblue;
+    color: white;
+    box-sizing: border-box;
+}
+
+/* order */
+
+/* flex-grow */
+
+/* flex-shrink */
+
+
+/* flex-basis */
+
+/* flex */
+/* [flex-grow] [flex-shrink] [flex-basis] */
+
+/* align-self */

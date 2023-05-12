@@ -1,0 +1,35 @@
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    border: 3px dashed orange;
+}
+
+/* flex container */
+
+
+/* flex-direction */
+
+/* flex-wrap */
+
+/* flex-flow */
+
+
+/* justify-content */
+/* : 주축의 정렬방식을 지정하는 속성 */
+
+/* 교차축 */
+
+/* align-content */
+
+/* stretch - 적용될 item 의 width/height 가 auto 이어야 적용된다. */
+
+
+/* align-items */
+
+
+
+/* 정가운데 (수평 가운데/수직 가운데 */
+
+
+
