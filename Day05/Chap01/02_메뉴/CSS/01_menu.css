@@ -1,0 +1,26 @@
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* reset */
+a { text-decoration: none; color: black; }
+ul { list-style-type: none; }
+
+header {
+    width: 100%;
+    border: 1px solid black;
+}
+
+/* util */
+.util { 
+    background-color: #DCE6FF;
+}
+.util .util-menu { 
+    float: right;
+}
+
+.util::after { display: block; content: ''; clear: both; }
+
+.util .util-menu li { 
+    display: inline-block;
+}
+.util .util-menu li a {  }
