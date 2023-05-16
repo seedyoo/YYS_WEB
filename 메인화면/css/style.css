@@ -1,0 +1,33 @@
+
+header {}
+header .util {
+    width: 100%;
+    height: 48px;
+    background-color: var(--main);
+}
+header .util ul {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+header .util ul li {}
+header .util ul li a {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+header .main-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+header .main-menu .icon-box {}
+header .main-menu .icon-box a {}
+header .main-menu nav {}
+header .main-menu #gnb {}
+header .main-menu #gnb li {}
+header .main-menu #gnb li a {
+
+}
