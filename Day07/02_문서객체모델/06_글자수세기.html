@@ -9,13 +9,12 @@
 
         document.addEventListener('DOMContentLoaded', ()=> {
             const textarea = document.querySelector('textarea')
-            //const h2 = document.querySelector('h2')
             const ul = document.querySelector('ul')
             const count = document.querySelector('#count')
 
             // 이벤트 처리
             textarea.addEventListener('keyup', (event) => {
-                // 글자수
+                // 글자 수
                 const length = textarea.value.length
                 count.textContent = length
 
@@ -24,9 +23,9 @@
                     const text = textarea.value
                     const li = document.createElement('li') // <li> 요소 생성
                     li.textContent = text
-                    ul.appendChild(li)
-                    textarea.value = ''
-                    count.textContent = 0
+                    ul.appendChild(li)      // <ul> 자식요소로 <li>를 추가
+                    textarea.value = ''     // 입력 메세지를 비움
+                    count.textContent = 0   // 글자 수 : 0 으로 초기화
                 }
             })
         })
