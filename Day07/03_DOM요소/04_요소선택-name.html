@@ -16,9 +16,12 @@
             // 입력 태그에 키 입력 시, h1 태그에 텍스트를 출력
             input.addEventListener('keyup', (event) => {
                 const text = document.getElementById('text')
+                // input.value = input 태그의 value 속성의 값 → 입력한 텍스트
                 text.innerText = input.value
+                // innerHTML    : 해당 요소에 '텍스트' + 'HTML' 양식을 지정하는 속성
+                // innerText    : 해당 요소에 '텍스트' 양식을 지정하는 속성
+
             })
-            
         })
     </script>
 </head>
