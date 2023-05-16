@@ -94,10 +94,40 @@ $(function() {
         $('#box3').slideToggle(1000)
     })
 
+    let sw = false      // 버튼 클릭 여부
+    $('#animate').on('click', function() {
+        
+        if( !sw ) {
+            // animate('스타일', 시간)
+            $('#box4').animate({
+                'opacity'   : '0.3',
+                'width'     : '600px'
+            }, 3000)
+        }
+        else {
+            $('#box4').animate({
+                'opacity'   : '1',
+                'width'     : '150px'
+                // 'background-color' : 'orange'
+            }, 3000)
+        }
+        sw = !sw
+    })
 
+    /* 
+        .animate() 메서드에는 적용할 수 있는 스타일 속성이 제한되어 있다.
+        원하는 스타일을 지정하여 애니메이션을 적용하는 방법
+        1. 이벤트 정의
+            ex. click 이벤트
+        2. 애니메이션 적용될 요소에 'active' 라는 클래스 추가/삭제(토글)
+            - toggleClass('active')
+        3. CSS 에서 .active 에 애니메이션 적용할 스타일 지정
+    */
+    $('#active').on('click', function() {
+        $('#box5').toggleClass('active')
+    })
 
-    /* $('#animate').on('click', function() {
-        $('#box4').animate(1000)
-    }) */
+    // addClass()           : 특정 클래스를 추가
+    // removeClass()        : 특정 클래스를 제거
 
 })
