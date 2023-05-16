@@ -5,8 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
-
+    <!-- 폰트어썸 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- slick 이미지 슬라이드 -->
+    <link rel="stylesheet" type="text/css" href="css/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+    
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -44,10 +49,89 @@
     </header>
 
     <!-- section1 -->
-    <section id="main" class="container"></section>
+    <section id="main" class="container">
+        <div class="slide">
+            <div class="item"><img src="img/s01.png" alt="1"></div>
+            <div class="item"><img src="img/s02.png" alt="2"></div>
+            <div class="item"><img src="img/s03.png" alt="3"></div>
+        </div>
+    </section>
     
     <!-- section2 -->
-    <section id="recent" class="container"></section>
+    <section id="recent" class="container">
+        <div class="card-list">
+            <!-- 카드 -->
+            <div class="card">
+                <div class="img-box">
+                    <a href="#">
+                        <img src="img/s01.png" alt="1">
+                    </a>
+                </div>
+
+                <div class="content-box">
+                    <h3 class="title">최신 이미지 01</h3>
+                    <p class="info">
+                        최신 이미지01 입니다. <br>
+                        새로운 게시물을 감상해보세요.
+                    </p>
+                    <div class="etc-box">
+                        <div class="item">
+                            <span class="date">2023-06-06</span>
+                        </div>
+                        <div class="item">
+                            <a href=""><i class="fa fa-heart-o"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img-box">
+                    <a href="#">
+                        <img src="img/s02.png" alt="1">
+                    </a>
+                </div>
+
+                <div class="content-box">
+                    <h3 class="title">최신 이미지 02</h3>
+                    <p class="info">
+                        최신 이미지01 입니다. <br>
+                        새로운 게시물을 감상해보세요.
+                    </p>
+                    <div class="etc-box">
+                        <div class="item">
+                            <span class="date">2023-06-06</span>
+                        </div>
+                        <div class="item">
+                            <a href=""><i class="fa fa-heart-o"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img-box">
+                    <a href="#">
+                        <img src="img/s03.png" alt="1">
+                    </a>
+                </div>
+
+                <div class="content-box">
+                    <h3 class="title">최신 이미지 03</h3>
+                    <p class="info">
+                        최신 이미지01 입니다. <br>
+                        새로운 게시물을 감상해보세요.
+                    </p>
+                    <div class="etc-box">
+                        <div class="item">
+                            <span class="date">2023-06-06</span>
+                        </div>
+                        <div class="item">
+                            <a href=""><i class="fa fa-heart-o"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- section3 -->
     <section id="info1" class="container"></section>
@@ -61,6 +145,11 @@
     <!-- footer -->
     <footer></footer>
 
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
+     <script type="text/javascript" src="js/slick.min.js"></script>
+
+     <script src="js/script.js"></script>
 </body>
 </html>
