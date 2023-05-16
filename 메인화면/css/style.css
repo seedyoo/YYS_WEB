@@ -64,7 +64,7 @@ header .main-menu #gnb li a {
 /* 슬라이드 - 화살표 */
 .slick-prev:before, .slick-next::before {
     color: lightgray;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 /* section - recent */
