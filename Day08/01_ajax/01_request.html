@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX 로 요청하기</title>
+    
+</head>
+<body>
+    
+    <h1>AJAX 요청하기</h1>
+
+    <label for="boardNo">게시글 번호</label>
+    <input type="text" name="boardNo" id="boardNo">
+    <button onclick="getBoard()">게시글 조회</button>
+
+    <hr>
+
+    <script>
+
+        // 게시글 조회 요청
+        function getBoard() {
+            // XMLHttpRequest 객체 생성
+            let request = new XMLHttpRequest()
+
+            // 응답 확인
+            request.onreadystatechange = function() {
+                // 요청 완료 시, 성공적으로 처리되었을 때
+                if( request.readyState == request.DONE && request.status == 200 ) {
+                    // requst.responseText : 응답 데이터
+                    let response = request.responseText
+                    alert(response)
+                }
+            }
+
+            let boardNo = document.getElementById('boardNo').value
+            let url = "http://192.168.0.44:8080/api/board/" + boardNo
+
+            // request.open("요청메소드", url, 비동기여부)
+            request.open("GET", url, true)
+
+            request.setRequestHeader("Content-Type", "application/json")
+
+            request.send()
+        }
+
+    </script>
+</body>
+</html>
