@@ -232,5 +232,30 @@ footer .copy {
     text-align: center; 
 }
 
+/* 사이드바 */
+.side-bar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    bottom: 0;
+    height: 100%;
+    width: 300px;
+    background-color: var(--sub);
+    z-index: 10;
+    transition: all 1s;
+    padding: 20px;
+}
 
+/* 사이드바 오픈 */
+.side-bar.active {
+    right: 0;
+}
 
+.side-bar .btn-box { 
+    display: flex; 
+    justify-content: flex-end;
+}
+.side-bar .btn-box a {
+    font-size: 32px;
+    color: white;
+}
