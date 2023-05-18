@@ -64,7 +64,19 @@ header .main-menu #gnb li a {
 /* 슬라이드 - 화살표 */
 .slick-prev:before, .slick-next::before {
     color: lightgray;
-    font-size: 20px;
+    font-size: 24px;
+}
+
+/* 왼쪽 화살표 */
+.slick-prev {
+    position: absolute;
+    left: -5%;
+}
+
+/* 오른쪽 화살표 */
+.slick-next {
+    position: absolute;
+    right: -5%;
 }
 
 /* section - recent */
@@ -115,3 +127,110 @@ header .main-menu #gnb li a {
     color: lightgray;
 }
 #recent .card-list .card .content-box .etc-box .item a {}
+
+/* section - info1 */
+section.info { 
+    display: flex; 
+    align-items: center;
+}
+section.info .img-box { 
+    width: 50%; 
+    height: 400px;
+    padding: 40px; 
+}
+section.info .img-box a {}
+section.info .img-box a img { 
+    width: 320px; 
+    height: 320px; 
+    object-fit: cover; 
+}
+
+section.info .content-box { 
+    width: 50%; 
+    height: 400px;
+    padding: 40px;
+}
+section.info .content-box .inner {
+    height: 100%;
+    position: relative;
+}
+section.info .content-box .inner .info-title{
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+section.info .content-box .inner .info-content{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+section.info .content-box .inner .btn-box{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--sub);
+    border-radius: 10px;
+}
+
+#info2{
+    flex-direction: row-reverse;
+    background-color: var(--main);
+}
+
+/* section */
+#map {
+    margin: 50px auto;
+}
+
+.my-place {
+    border: 1px solid gray;
+    background-color: white;
+    padding: 6px 24px;
+}
+
+/* footer */
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
+    background-color: #232323;
+    padding: 50px 0px 20px;
+    color: white;
+}
+footer .inner {
+    width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .inner .site-map {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 160px;
+}
+footer .inner .site-map ul {}
+footer .inner .site-map ul li {
+    padding: 20px 0;
+}
+footer .inner .site-map ul li a {}
+
+footer .inner .family {}
+footer .inner .family select {
+    min-width: 160px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    padding-right: 10px;
+}
+
+footer .copy { 
+    text-align: center; 
+}
+
+
+
