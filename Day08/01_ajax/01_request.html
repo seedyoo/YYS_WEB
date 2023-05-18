@@ -194,13 +194,12 @@
                      
                     // 데이터가 있으면
                     else {
-                        document.getElementById('empty').remove()
+                        // 데이터 비우기
+                        let boardTitle = document.getElementById('board-title')
+                        document.getElementById('board-list').innerHTML = ''
+                        document.getElementById('board-list').appendChild(boardTitle)
                     }
 
-                    // 데이터 비우기
-                    let boardTitle = document.getElementById('board-title')
-                    document.getElementById('board-list').
-                    document.getElementById('board-list').appendChild(boardTitle)
                     
                     // 게시글 목록 추가
                     let $boardList = document.getElementById('board-list')
@@ -251,6 +250,7 @@
                 if( request.readyState == request.DONE && request.status == 200 ) {
                     let response = request.responseText
                     alert(response)
+                    getList()
                 }
 
                 // 에러 발생
@@ -300,6 +300,7 @@
                 if( request.readyState == request.DONE && request.status == 200 ) {
                     let response = request.responseText
                     alert(response)
+                    getList()
                 }
 
                 // 에러 발생
@@ -342,6 +343,7 @@
                 if( request.readyState == request.DONE && request.status == 200 ) {
                     let response = request.responseText
                     alert(response)
+                    getList()
                 }
 
                 // 에러 발생
@@ -386,6 +388,7 @@
                 if( request.readyState == request.DONE && request.status == 200 ) {
                     let response = request.responseText
                     alert(response)
+                    getList()
                 }
 
                 // 에러 발생
@@ -418,6 +421,7 @@
                 if( request.readyState == request.DONE && request.status == 200 ) {
                     let response = request.responseText
                     alert(response)
+                    getList()
                 }
                 // 에러 발생
                 if( request.readyState == request.DONE && request.status == 500 ) {
@@ -448,6 +452,7 @@
                 if( request.readyState == request.DONE && request.status == 200 ) {
                     let response = request.responseText
                     alert(response)
+                    getList()
                 }
                 // 에러 발생
                 if( request.readyState == request.DONE && request.status == 500 ) {
