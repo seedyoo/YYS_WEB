@@ -47,6 +47,53 @@
         <button type="button" onclick="insertXML()">AJAX 요청(XML)</button>
     </form>
 
+    <h3>게시글 수정</h3>
+    <h4>FORM 전송 | AJAX 전송</h4>
+    <!-- 요청 URL   : //192.168.0.44:8080/api/board -->
+    <!-- 요청 메소드 : PUT -->
+    <form action="//192.168.0.44:8080/api/board/update" method="post">
+        <table>
+            <tr>
+                <td><label for="boardNo">게시글 번호</label></td>
+                <td><input type="text" name="boardNo" id="update-boardNo"></td>
+            </tr>
+            <tr>
+                <td><label for="title">제목</label></td>
+                <td><input type="text" name="title" id="update-title"></td>
+            </tr>
+            <tr>
+                <td><label for="writer">작성자</label></td>
+                <td><input type="text" name="writer" id="update-writer"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea name="content" id="update-content" cols="50" rows="10"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="FORM 전송">
+        <button type="button" onclick="updateJSON()">AJAX 요청(JSON)</button>
+        <button type="button" onclick="updateXML()">AJAX 요청(XML)</button>
+    </form>
+
+    <hr>
+
+    <h3>게시글 삭제</h3>
+    <h4>FORM 전송 | AJAX 전송</h4>
+    <!-- 요청 URL   : //192.168.0.44:8080/api/board -->
+    <!-- 요청 메소드 : DELETE -->
+    <form action="//192.168.0.44:8080/api/board/delete" method="post">
+        <table>
+            <tr>
+                <td><label for="boardNo">게시글 번호</label></td>
+                <td><input type="text" name="boardNo" id="delete-boardNo"></td>
+            </tr>
+        </table>
+        <input type="submit" value="FORM 전송">
+        <button type="button" onclick="deleteJSON()">AJAX 요청(JSON)</button>
+        <button type="button" onclick="deleteXML()">AJAX 요청(XML)</button>
+    </form>
+
     <hr>
 
     <h3>게시글 목록</h3>
