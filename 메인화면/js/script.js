@@ -71,7 +71,6 @@ $(function() {
             $('.side-bar').toggleClass('active')
         })
 
-        
         /* 닫기 */
         $('#btn-close').on('click', function(){
             $('.side-bar').toggleClass('active')
