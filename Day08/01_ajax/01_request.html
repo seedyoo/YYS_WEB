@@ -100,7 +100,7 @@
 
     <h3>게시글 목록</h3>
     <table border="1" id="board-list">
-        <tr>
+        <tr id="board-title">
             <th width="50">번호</th>
             <th width="300">제목</th>
             <th width="100">작성자</th>
@@ -196,6 +196,11 @@
                     else {
                         document.getElementById('empty').remove()
                     }
+
+                    // 데이터 비우기
+                    let boardTitle = document.getElementById('board-title')
+                    document.getElementById('board-list').
+                    document.getElementById('board-list').appendChild(boardTitle)
                     
                     // 게시글 목록 추가
                     let $boardList = document.getElementById('board-list')
