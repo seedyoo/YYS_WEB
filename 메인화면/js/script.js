@@ -77,6 +77,9 @@ $(function() {
         })
 
 
+        function btn(){
+            alert('Click');
+        }
         
         
 })
