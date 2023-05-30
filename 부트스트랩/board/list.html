@@ -59,88 +59,6 @@
                 <tr id="empty">
                     <td colspan="5">조회된 데이터가 없습니다.</td>
                 </tr>
-                <tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr>
-                <tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr><tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr><tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr><tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr><tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr><tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr><tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr><tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr><tr>
-                    <td width="50">1001</td>
-                    <td width="300">
-                        <a href="read.html" class="text-decoration-none text-white">안녕하세요</a>
-                    </td>
-                    <td width="100">김휴먼</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                    <td width="200">2023-05-23 12:00:00</td>
-                </tr>
             </tbody>
         </table>
 
@@ -181,24 +99,28 @@
                     // 데이터가 있으면
                     // 데이터 비우기
                     let boardTitle = document.getElementById('board-title')
-                        document.getElementById('board-list').innerHTML = ''            // 목록 비우기
-                        document.getElementById('board-list').appendChild(boardTitle)   // 제목 속성만 추가
+                        // document.getElementById('board-list').innerHTML = ''            // 목록 비우기
+                        document.getElementById('board-list').thead = boardTitle   // 제목 속성만 추가
 
                     // 게시글 목록 추가하기
                     let $boardList = document.getElementById('board-list')              // <table>
+                    let tbody = ''
                     for (const board of boardList) {
                         let tr =`<tr>
                             <td width="50">${board.boardNo}</td>
                             <td width="300">
-                                <a href="read.html" class="text-decoration-none text-white">${board.title}</a>
+                                <a href="read.html?boardNo=${board.boardNo}" class="text-decoration-none text-white">${board.title}</a>
                             </td>
                             <td width="100">${board.writer}</td>
                             <td width="200">${board.regDate}</td>
                             <td width="200">${board.updDate}</td>
                         </tr>
                         `
-                        $boardList.innerHTML += tr
+                        tbody += tr
                     }
+                    // $boardList.children[1] : tbody
+                    $boardList.children[1].innerHTML = tbody
+                    
             })
         }
 
