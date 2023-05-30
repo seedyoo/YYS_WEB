@@ -44,9 +44,10 @@
                 <a href="insert.html" class="btn btn-primary">글쓰기</a>
             </div>
         </div>
-        <table class="table table-dark table-striped table-hover shadow text-center">
+        
+        <table class="table table-dark table-striped table-hover shadow text-center" id="board-list">
             <thead>
-                <tr class="">
+                <tr class="" id="board-title">
                     <th>번호</th>
                     <th>제목</th>
                     <th>작성자</th>
@@ -55,6 +56,9 @@
                 </tr>
             </thead>
             <tbody>
+                <tr id="empty">
+                    <td colspan="5">조회된 데이터가 없습니다.</td>
+                </tr>
                 <tr>
                     <td width="50">1001</td>
                     <td width="300">
@@ -141,5 +145,115 @@
         </table>
 
       </div> 
+
+      <script>
+        getList()
+
+        
+
+        // 게시글 데이터 요청 - fetch
+        async function getListData() {
+            let url = "http://192.168.0.200:8080/api/board"
+            let option = {
+                method: 'GET',
+                Headers: {
+                    'Content-Type' : 'application/json'
+                }
+            }
+
+            let response = await fetch(url, option)
+            
+            if( response.ok )
+                return response.json()
+            else
+                return null
+        }
+
+        function getList() {
+            getListData().then( (data) => {
+                console.log(data);
+                let boardList = data
+
+                // 데이터가 없으면
+                if( boardList.length == 0 )
+                        return
+
+                    // 데이터가 있으면
+                    // 데이터 비우기
+                    let boardTitle = document.getElementById('board-title')
+                        document.getElementById('board-list').innerHTML = ''            // 목록 비우기
+                        document.getElementById('board-list').appendChild(boardTitle)   // 제목 속성만 추가
+
+                    // 게시글 목록 추가하기
+                    let $boardList = document.getElementById('board-list')              // <table>
+                    for (const board of boardList) {
+                        let tr =`<tr>
+                            <td width="50">${board.boardNo}</td>
+                            <td width="300">
+                                <a href="read.html" class="text-decoration-none text-white">${board.title}</a>
+                            </td>
+                            <td width="100">${board.writer}</td>
+                            <td width="200">${board.regDate}</td>
+                            <td width="200">${board.updDate}</td>
+                        </tr>
+                        `
+                        $boardList.innerHTML += tr
+                    }
+            })
+        }
+
+        // 게시글 데이터 요청
+        /* 
+        function getList() {
+            let request = new XMLHttpRequest()
+
+            request.onreadystatechange = function () {
+                
+                // 응답 성공
+                if( request.readyState == request.DONE && request.status == 200) {
+                    // 응답 데이터
+                    let response = request.responseText
+
+                    let boardList = JSON.parse(response)
+
+                    // 데이터가 없으면
+                    if( boardList.length == 0 )
+                        return
+
+                    // 데이터가 있으면
+                    // 데이터 비우기
+                    let boardTitle = document.getElementById('board-title')
+                        document.getElementById('board-list').innerHTML = ''            // 목록 비우기
+                        document.getElementById('board-list').appendChild(boardTitle)   // 제목 속성만 추가
+
+                    // 게시글 목록 추가하기
+                    let $boardList = document.getElementById('board-list')              // <table>
+                    for (const board of boardList) {
+                        let tr =`<tr>
+                            <td width="50">${board.boardNo}</td>
+                            <td width="300">
+                                <a href="read.html" class="text-decoration-none text-white">${board.title}</a>
+                            </td>
+                            <td width="100">${board.writer}</td>
+                            <td width="200">${board.regDate}</td>
+                            <td width="200">${board.updDate}</td>
+                        </tr>
+                        `
+                        $boardList.innerHTML += tr
+                    }
+
+
+                    console.log('응답 데이터 : ');
+                    console.log(request);
+                }
+            }
+
+            let url = "http://192.168.0.200:8080/api/board"
+            request.open('GET', url, true)
+            request.setRequestHeader("Content-Type", "application/json")
+            request.send()
+
+        } */
+      </script>
 </body>
 </html>
