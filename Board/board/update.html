@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 읽기</title>
+    <title>게시글 수정</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -29,7 +29,7 @@
         <div class="inner">
             <!-- 제목 영역 -->
             <div class="main-title">
-                <h1>게시판 읽기</h1>
+                <h1>게시판 수정</h1>
             </div>
     
             <!-- 게시글 목록 -->
@@ -37,21 +37,19 @@
                 <tr>
                     <td class="label">제목</td>
                     <td class="data">
-                        <h5 id="board-title"></h5>
+                        <input type="text" name="title" id="title" class="input-text">
                     </td>
                 </tr>
                 <tr>
                     <td class="label">작성자</td>
                     <td class="data">
-                        <h5 id="board-writer"></h5>
+                        <input type="text" name="writer" id="writer" class="input-text">
                     </td>
                 </tr>
                 <tr>
                     <td class="label">내용</td>
                     <td class="data">
-                        <p id="board-content">
-                           
-                        </p>
+                        <textarea name="content" id="content" cols="30" rows="10" class="input-textarea"></textarea>
                     </td>
                 </tr>
             </table>
@@ -61,7 +59,7 @@
                     <a href="list.html" class="btn">목록</a>
                 </div>
                 <div class="item">
-                    <a href="insert.html" class="btn">수정</a>
+                    <a href="javascript:;" class="btn" id="btn-update">수정</a>
                     <a href="javascript:;" class="btn" id="btn-delete">삭제</a>
                 </div>
             </div>
@@ -91,9 +89,9 @@
                 success : function(response) {
                     let board = response
 
-                    $('#board-title').text(board.title)
-                    $('#board-writer').text(board.writer)
-                    $('#board-content').text(board.content)
+                    $('#title').val(board.title)
+                    $('#writer').val(board.writer)
+                    $('#content').val(board.content)
 
                 },
                 error : function(error) {
