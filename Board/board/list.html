@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 목록</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <!-- 로그인 | 회원가입 -->
+        <div class="util"></div>
+
+        <!-- 메인 메뉴 -->
+        <div class="menu">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="list.html">Board</a></li>
+                    <li><a href=".html">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main container">
+        <div class="inner">
+            <!-- 제목 영역 -->
+            <div class="main-title">
+                <h1>게시판 목록</h1>
+                <p>커뮤니티 게시글 데이터를 조회합니다.</p>
+            </div>
+    
+            <!-- 게시글 목록 -->
+            <table class="board">
+                <thead>
+                    <tr>
+                        <td class="num">번호</td>
+                        <td class="title">제목</td>
+                        <td class="writer">작성자</td>
+                        <td class="date">등록일자</td>
+                        <td class="view">조회수</td>
+                    </tr>
+                </thead>
+                <tbody id="board-data">
+                    <tr>
+                        <td class="num">5</td>
+                        <td class="title">게시글 제목...</td>
+                        <td class="writer">김휴먼</td>
+                        <td class="date">2023.06.01</td>
+                        <td class="view">100</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="btn-box">
+                <a href="../index.html" class="btn">메인</a>
+                <a href="insert.html" class="btn">글쓰기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <script>
+        /* 게시글 목록 - 데이터 요청 */
+        getList()
+
+        function getList() {
+
+            const url = 'http://192.168.0.200:8080/api/board'
+            $.ajax({
+                url : url,
+                type : 'get',
+                success : function(response) {
+                    let boardList = response
+
+                    if( boardList.length == 0 ) {
+                        console.log(`조회된 데이터가 없습니다.`);
+                        return
+                    }
+
+                    let boardData = ''
+                    for( let i = 0; i < boardList.length ; i++) {
+                        const boardNo = boardList[i].boardNo
+                        const title = `<a href='read.html?boardNo=${boardNo}'>${boardList[i].title}</a>`
+                    
+                        const date = new Date(boardList[i].regDate);
+                        const regDate = date.toISOString().split("T")[0];
+
+
+                        let tr = `<tr>
+                                    <td class='num'>${boardList[i].boardNo}</td>
+                                    <td class='title'>${title}</td>
+                                    <td class='writer'>${boardList[i].writer}</td>
+                                    <td class='date'>${regDate}</td>
+                                    <td class='view'>0</td>
+                                  </tr>   
+                                 `
+                        boardData += tr
+                    }
+                    $('#board-data').html(boardData)
+
+                },
+                error : function(error) {
+
+                }
+            })
+        }
+    </script>
+</body>
+</html>
