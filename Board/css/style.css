@@ -131,14 +131,29 @@ header .menu nav ul li:hover::before  {
 }
 
 .board .num { width: 10%; }
-.board .title { width: 40%; text-align-last: left; }
-.board .writer { width: 20%; }
+.board .title { width: 40%; max-width: 340px; }
+.board .writer { width: 20%; max-width: 160px; }
 .board .date { width: 20%; }
 .board .view { width: 10%; }
 
+.board tbody .title { text-align: left; }
+
+/* 줄 넘침 방지 (...) */
+.txt-over { 
+   display: inline-block;
+   width: 95%;
+   max-height: 32px;
+   overflow: hidden;
+   text-overflow: ellipsis;   /* 말줄임(...) */
+   white-space: nowrap;
+}
+
 /* 읽기 */
 .board .label { width: 20%; }
-.board .data { width: 80%; text-align-last: left; }
+.board .data { 
+   width: 80%; 
+   text-align: left; 
+}
 
 .board thead { font-weight: bold; }
 

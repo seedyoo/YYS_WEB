@@ -46,11 +46,7 @@
                 </thead>
                 <tbody id="board-data">
                     <tr>
-                        <td class="num">5</td>
-                        <td class="title">게시글 제목...</td>
-                        <td class="writer">김휴먼</td>
-                        <td class="date">2023.06.01</td>
-                        <td class="view">100</td>
+                        <td colspan="5">조회된 데이터가 없습니다.</td>
                     </tr>
                 </tbody>
             </table>
@@ -94,8 +90,8 @@
 
                         let tr = `<tr>
                                     <td class='num'>${boardList[i].boardNo}</td>
-                                    <td class='title'>${title}</td>
-                                    <td class='writer'>${boardList[i].writer}</td>
+                                    <td class='title'><span class="txt-over">${title}</span></td>
+                                    <td class='writer'><span class="txt-over">${boardList[i].writer}</span></td>
                                     <td class='date'>${regDate}</td>
                                     <td class='view'>0</td>
                                   </tr>   
