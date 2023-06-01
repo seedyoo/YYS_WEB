@@ -79,6 +79,12 @@
             let writer = $('#writer').val()
             let content = $('#content').val()
 
+            // 유효성 검사
+            if( title.length > 20 ) {
+                alert('제목은 20 자까지 가능합니다.')
+                return
+            }
+
             let data = {
                 'title' : title,
                 'writer' : writer,
