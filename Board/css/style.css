@@ -213,3 +213,31 @@ header .menu nav ul li:hover::before  {
    padding-left: 12px;
    font-size: 12px;
 }
+
+/* 페이지네이션 */
+.pagination {
+   margin: 40px auto;
+   text-align: center;
+   display: flex;
+   justify-content: center;
+}
+.pagination a {
+   display: inline-block;
+   width: 32px;
+   height: 32px;
+   line-height: 32px;
+   border: 1px solid gray;
+}
+.pagination .page-no {
+   font-size: 18px;
+}
+.pagination .page-arrow {
+   color: gray;
+}
+
+.pagination a.on,
+.pagination a:hover {
+   background-color: royalblue;
+   font-weight: bold;
+   color: white;
+} 

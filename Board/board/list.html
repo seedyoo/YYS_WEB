@@ -72,6 +72,25 @@
                 </tbody>
             </table>
 
+            <!-- 페이지네이션 -->
+            <div class="pagination">
+                <a href="javascript:;" class="page-arrow">&laquo;</a>
+                <a href="javascript:;" class="page-arrow">&lsaquo;</a>
+                <a href="javascript:;" class="page-no">1</a>
+                <a href="javascript:;" class="page-no">2</a>
+                <a href="javascript:;" class="page-no">3</a>
+                <a href="javascript:;" class="page-no">4</a>
+                <a href="javascript:;" class="page-no">5</a>
+                <a href="javascript:;" class="page-no">6</a>
+                <a href="javascript:;" class="page-no">7</a>
+                <a href="javascript:;" class="page-no">8</a>
+                <a href="javascript:;" class="page-no">9</a>
+                <a href="javascript:;" class="page-no">10</a>
+                <a href="javascript:;" class="page-arrow">&rsaquo;</a>
+                <a href="javascript:;" class="page-arrow">&raquo;</a>
+            </div>
+
+
             <div class="btn-box">
                 <a href="../index.html" class="btn">메인</a>
                 <a href="insert.html" class="btn">글쓰기</a>
@@ -85,9 +104,19 @@
     <!-- jQuery UI-->
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
     <script>
+
+        // 페이지 관련 변수
+        let page = 1        // 페이지 번호
+        let count = 10      // 페이지당 게시글 수
+
+        // 페이지 번호 갱신
+        function initPage() {
+            
+        }
+
         /* 게시글 목록 - 데이터 요청 */
         // getList()
-        getPageList()
+        getPageList(page, count)
 
         // 게시글 목록 요청
         function getList() {
@@ -108,12 +137,12 @@
         }
 
         // 게시글 목록 요청 - 페이징
-        function getPageList() {
+        function getPageList(page, count) {
 
             const url = 'http://192.168.0.200:8080/api/board/page'
             let data = {
-                'page' : 1,         // 페이지 : 1
-                'count' : 10        // 페이지당 글 개수 : 10
+                'page' : page,         // 페이지
+                'count' : count        // 페이지당 글 개수
             }
             $.ajax({
                 url : url,
