@@ -31,6 +31,15 @@
             <div class="main-title">
                 <h1>게시글 읽기</h1>
             </div>
+
+            <div class="info-box">
+                <div class="item">
+                    <div class="label">
+                        <span class="label">조회수 : </span>
+                        <span id="board-view" class="board-view">0</span>
+                    </div>
+                </div>
+            </div>
     
             <!-- 게시글 목록 -->
             <table class="board">
@@ -94,6 +103,7 @@
                     $('#board-title').text(board.title)
                     $('#board-writer').text(board.writer)
                     $('#board-content').text(board.content)
+                    $('#board-view').text(board.view)
 
                 },
                 error : function(error) {

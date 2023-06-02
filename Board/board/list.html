@@ -7,6 +7,9 @@
     <title>게시글 목록</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/theme.min.css">
 </head>
 <body>
     <header>
@@ -31,6 +34,23 @@
             <div class="main-title">
                 <h1>게시글 목록</h1>
                 <p>커뮤니티 게시글 데이터를 조회합니다.</p>
+            </div>
+
+            <div class="btn-box">
+                <div class="item">
+                    <select name="search-type" id="search-type" class="input-search">
+                        <option value="1">제목</option>
+                        <option value="2">내용</option>
+                        <option value="3">제목+내용</option>
+                        <option value="4">작성자</option>
+                    </select>
+                    <input type="text" name="keyword" id="keyword" class="input-search"
+                           autocomplete="on">
+                    <a href="javascript:;" class="btn" id="btn-search">검색</a>
+                </div>
+                <div class="item">
+                    <a href="insert.html" class="btn">글쓰기</a>
+                </div>
             </div>
     
             <!-- 게시글 목록 -->
@@ -61,6 +81,8 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="../js/jquery-3.7.0.min.js"></script>
+    <!-- jQuery UI-->
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
     <script>
         /* 게시글 목록 - 데이터 요청 */
         getList()
@@ -74,38 +96,97 @@
                 success : function(response) {
                     let boardList = response
 
-                    if( boardList.length == 0 ) {
-                        console.log(`조회된 데이터가 없습니다.`);
-                        return
-                    }
-
-                    let boardData = ''
-                    for( let i = 0; i < boardList.length ; i++) {
-                        const boardNo = boardList[i].boardNo
-                        const title = `<a href='read.html?boardNo=${boardNo}'>${boardList[i].title}</a>`
-                    
-                        const date = new Date(boardList[i].regDate);
-                        const regDate = date.toISOString().split("T")[0];
-
-
-                        let tr = `<tr>
-                                    <td class='num'>${boardList[i].boardNo}</td>
-                                    <td class='title'><span class="txt-over">${title}</span></td>
-                                    <td class='writer'><span class="txt-over">${boardList[i].writer}</span></td>
-                                    <td class='date'>${regDate}</td>
-                                    <td class='view'>0</td>
-                                  </tr>   
-                                 `
-                        boardData += tr
-                    }
-                    $('#board-data').html(boardData)
-
+                    displayList( boardList )
                 },
                 error : function(error) {
 
                 }
             })
         }
+
+        // 검색 버튼 - 클릭 이벤트
+        $('#btn-search').on('click', function() {
+            search()
+        })
+
+        // 검색창에서 엔터 키 입력 이벤트
+        $('#keyword').on('keyup', function(event) {
+            // 바로 검색
+            // search()
+
+            // 엔터
+            if( event.keyCode == 13 ) {
+                search()
+            }
+
+        })
+
+
+        function search() {
+            // 검색 조건    (search-type)
+            // 검색어       (keyword)
+            let searchType = $('#search-type').val()
+            let keyword = $('#keyword').val()
+
+            let data = {
+                'searchType' : searchType,
+                'keyword' : keyword,
+            }
+
+            const url = 'http://192.168.0.200:8080/api/board/list'
+            $.ajax({
+                url : url,
+                type : 'post',
+                data : JSON.stringify(data),
+                dataType : "json",
+                contentType : 'application/json',
+                success : function(response) {
+                    let boardList = response
+
+                    displayList( boardList )
+                },
+                error : function(error) {
+
+                }
+            })
+
+        }
+
+        // 게시글 목록 갱신
+        function displayList( boardList ) {
+
+            if( boardList.length == 0 ) {
+                console.log(`조회된 데이터가 없습니다.`);
+                return
+            }
+
+            let boardData = ''
+            for( let i = 0; i < boardList.length ; i++) {
+                const boardNo = boardList[i].boardNo
+                const title = `<a href='read.html?boardNo=${boardNo}'>${boardList[i].title}</a>`
+            
+                const date = new Date(boardList[i].regDate);
+                const regDate = date.toISOString().split("T")[0];
+
+
+                let tr = `<tr>
+                            <td class='num'>${boardList[i].boardNo}</td>
+                            <td class='title'><span class="txt-over">${title}</span></td>
+                            <td class='writer'><span class="txt-over">${boardList[i].writer}</span></td>
+                            <td class='date'>${regDate}</td>
+                            <td class='view'>${boardList[i].view}</td>
+                            </tr>   
+                            `
+                boardData += tr
+            }
+            $('#board-data').html(boardData)
+
+        }
+
+        $('#keyword').autocomplete({
+            source : ['TEST1','TEST2','TEST3','TEST4',],
+        })
+
     </script>
 </body>
 </html>
