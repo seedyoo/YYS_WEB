@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
 
+    <!-- jQuery ui css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/theme.min.css">
 </head>
@@ -85,8 +86,10 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
     <script>
         /* 게시글 목록 - 데이터 요청 */
-        getList()
+        // getList()
+        getPageList()
 
+        // 게시글 목록 요청
         function getList() {
 
             const url = 'http://192.168.0.200:8080/api/board'
@@ -104,13 +107,46 @@
             })
         }
 
+        // 게시글 목록 요청 - 페이징
+        function getPageList() {
+
+            const url = 'http://192.168.0.200:8080/api/board/page'
+            let data = {
+                'page' : 1,         // 페이지 : 1
+                'count' : 10        // 페이지당 글 개수 : 10
+            }
+            $.ajax({
+                url : url,
+                type : 'get',
+                data : data,
+                success : function(response) {
+                    let boardList = response
+
+                    displayList( boardList )
+                },
+                error : function(error) {
+
+                }
+            })
+        }
+
         // 검색 버튼 - 클릭 이벤트
         $('#btn-search').on('click', function() {
             search()
         })
 
-        // 검색창에서 엔터 키 입력 이벤트
+        let autoFlag = false
+        // 검색창에서 - 키 입력 이벤트
         $('#keyword').on('keyup', function(event) {
+
+            console.log( event.keyCode )
+
+            // 연관 키워드 자동완성
+            // ↑,↓ 방향키 입력은 제외  
+            // ... 추가 로직 필요
+            if( event.keyCode != 38 && event.keyCode != 40 )
+                autoComplete()
+
             // 바로 검색
             // search()
 
@@ -121,7 +157,43 @@
 
         })
 
+        // 연관 키워드 요청
+        function autoComplete() {
 
+            let keyword = $('#keyword').val()
+
+            let data = {
+                'keyword' : keyword,
+            }
+
+            const url = 'http://192.168.0.200:8080/api/board/keyword'
+            $.ajax({
+                url : url,
+                type : 'post',
+                data : JSON.stringify(data),
+                dataType : "json",
+                contentType : 'application/json',
+                success : function(response) {
+                    let keywordList = response
+
+                    let list = []
+                    for (let i = 0; i < keywordList.length; i++) {
+                        const board = keywordList[i];
+                        const title = board.title
+                        list.push(title)
+                    }
+                    $('#keyword').autocomplete('option', 'source', list)
+
+                    console.log(keywordList)
+                },
+                error : function(error) {
+
+                }
+            })
+
+        }
+
+        // 검색 요청
         function search() {
             // 검색 조건    (search-type)
             // 검색어       (keyword)
@@ -174,7 +246,7 @@
                             <td class='title'><span class="txt-over">${title}</span></td>
                             <td class='writer'><span class="txt-over">${boardList[i].writer}</span></td>
                             <td class='date'>${regDate}</td>
-                            <td class='view'>${boardList[i].view}</td>
+                            <td class='view'>${boardList[i].views}</td>
                             </tr>   
                             `
                 boardData += tr
@@ -184,7 +256,7 @@
         }
 
         $('#keyword').autocomplete({
-            source : ['TEST1','TEST2','TEST3','TEST4',],
+            source : [],
         })
 
     </script>

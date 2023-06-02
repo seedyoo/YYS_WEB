@@ -34,10 +34,8 @@
 
             <div class="info-box">
                 <div class="item">
-                    <div class="label">
-                        <span class="label">조회수 : </span>
-                        <span id="board-view" class="board-view">0</span>
-                    </div>
+                    <span class="label">조회수 : </span>
+                    <span id="board-view" class="board-view">0</span>
                 </div>
             </div>
     
@@ -103,7 +101,7 @@
                     $('#board-title').text(board.title)
                     $('#board-writer').text(board.writer)
                     $('#board-content').text(board.content)
-                    $('#board-view').text(board.view)
+                    $('#board-view').text(board.views)
 
                 },
                 error : function(error) {
