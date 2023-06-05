@@ -174,7 +174,7 @@
 
             // 폼 요청
             // let form = $('#form')
-            // form.submit()                   // 폼제출
+            // form.submit()               // 폼 제출
 
             // 등록 요청
             const url = 'http://192.168.0.200:8080/api/board'
@@ -190,20 +190,23 @@
             formData.append('title', title)
             formData.append('writer', writer)
             formData.append('content', content)
-            formData.append('file', files)
+
+            for (let i = 0; i < files.length; i++) {
+                formData.append('file[]', files[i])
+            }
 
             // let data = {
             //     'title' : title,
             //     'writer' : writer,
-            //     'content' : content
+            //     'content' : content,
             // }
 
             $.ajax({
                 url : url,
                 type : 'post',
-                data : formData,             // JSON.stringify(data),
-                contentType     : false,     // 'application/json',
-                processData     : false,     // 데이터를 쿼리 문자열로 변환 여부
+                data : formData,            // JSON.stringify(data),
+                contentType     : false,    // 'application/json',
+                processData     : false,    // 데이터를 쿼리 문자열로 변환 여부
                 success : function(response) {
                     // alert(response)
                     if( response == 'SUCCESS' ) {
