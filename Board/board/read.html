@@ -161,7 +161,7 @@
             })
         }
 
-        // 파일 삭제
+        // 파일 삭제 
         function deleteFile(e) {
 
             // [확인] -> true -> 삭제
@@ -172,7 +172,7 @@
             }
 
             let fileNo = $(e).attr('data')
-            
+
             // 삭제 요청
             const url = 'http://192.168.0.200:8080/api/file/' + fileNo
 
@@ -190,6 +190,7 @@
 
                 }
             })
+
         }
 
 
