@@ -137,14 +137,15 @@
                     let fileUrl = 'http://192.168.0.200:8080/api/file'
                     for (let i = 0; i < fileList.length; i++) {
                         let fileNo = fileList[i].fileNo
-                        let fileName = fileList[i].fileName
+                        let fileName = fileList[i].fileName         // UID_강아지.png
+                        let originName = fileList[i].originName     // 원본파일명
                         let filePath = fileList[i].filePath
 
                         let li = `<li>
                                     <p>
                                         <img src="${fileUrl}/img/${fileNo}" width="240" />
                                     </p>
-                                    <span>${fileName}</span>
+                                    <span>${originName}</span>
                                     <a href="${fileUrl}/${fileNo}">[다운로드]</a>
                                     <a href="javascript:;" onclick="deleteFile(this)" data="${fileNo}">[삭제]</a>
                                   </li>  
