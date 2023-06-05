@@ -146,6 +146,7 @@
                                     </p>
                                     <span>${fileName}</span>
                                     <a href="${fileUrl}/${fileNo}">[다운로드]</a>
+                                    <a href="javascript:;" onclick="deleteFile(this)" data="${fileNo}">[삭제]</a>
                                   </li>  
                                  `
                         fileListData += li
@@ -153,6 +154,37 @@
 
                     $('#file-list').html(fileListData)
 
+                },
+                error : function(error) {
+
+                }
+            })
+        }
+
+        // 파일 삭제
+        function deleteFile(e) {
+
+            // [확인] -> true -> 삭제
+            // [취소] -> false -> 삭제 안 함
+            let check = confirm('정말로 삭제하시겠습니까?')
+            if( !check ) {
+                return
+            }
+
+            let fileNo = $(e).attr('data')
+            
+            // 삭제 요청
+            const url = 'http://192.168.0.200:8080/api/file/' + fileNo
+
+            $.ajax({
+                url : url,
+                type : 'delete',
+                success : function(response) {
+
+                    if( response == 'SUCCESS' ) {
+                        getFileList()       // 파일 목록 갱신
+                    }
+                    
                 },
                 error : function(error) {
 
