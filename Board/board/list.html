@@ -51,8 +51,20 @@
                     <a href="javascript:;" class="btn" id="btn-search">검색</a>
                 </div>
                 <div class="item">
+                    <select name="rows" id="rows" class="input-search">
+                        <option value="5">5개씩 보기</option>
+                        <option value="10">10개씩 보기</option>
+                        <option value="30">30개씩 보기</option>
+                        <option value="50">50개씩 보기</option>
+                    </select>
+                </div>
+                <div class="item">
                     <a href="insert.html" class="btn">글쓰기</a>
                 </div>
+            </div>
+
+            <div class="info">
+                <p>게시글 <span id="totalCount">0</span> 건이 조회되었습니다.</p>
             </div>
     
             <!-- 게시글 목록 -->
@@ -105,13 +117,19 @@
         let rows = 10       // 페이지당 게시글 수
         let pageCount = 10  // 노출 페이지 개수
         let totalCount = 0  // 전체 게시글 수
-        let searchType = 0  // 검색 조건
+        let searchType = 0 // 검색 조건
         let keyword = ''    // 검색어
 
         /* 게시글 목록 - 데이터 요청 */
         // getList()
-        initPage()
-        getPageList(page, rows)
+        initRows()                  // 보여줄 게시글 개수 초기화
+        initPage()                  // 페이지 번호 초기화
+        getPageList(page, rows)     // 게시글 목록 조회
+
+        // 보여줄 게시글 개수 갱신
+        function initRows() {
+            $('#rows').val(rows)
+        }
 
         // 페이지 번호 갱신
         function initPage() {
@@ -144,6 +162,9 @@
                     let last = pageInfo.lastPage
                     let prev = pageInfo.prev
                     let next = pageInfo.next
+
+                    let totalCount = pageInfo.totalCount
+                    $('#totalCount').text(totalCount)
 
                     $('#first').attr('data', first)
                     $('#last').attr('data', last)
@@ -193,8 +214,11 @@
 
             const url = 'http://192.168.0.200:8080/api/board/page'
             let data = {
-                'page' : page,         // 페이지
-                'rows' : rows          // 페이지당 글 개수
+                page        : page,
+                rows        : rows,
+                pageCount   : pageCount,
+                searchType  : searchType,
+                keyword     : keyword,
             }
             $.ajax({
                 url : url,
@@ -204,8 +228,6 @@
                     let boardList = response
 
                     displayList( boardList )
-                    
-                    // 여기서 부터...
                 },
                 error : function(error) {
 
@@ -284,8 +306,11 @@
             keyword = $('#keyword').val()
             
             let data = {
-                'searchType' : searchType,
-                'keyword' : keyword,
+                page        : page,
+                rows        : rows,
+                pageCount   : pageCount,
+                searchType  : searchType,
+                keyword     : keyword,
             }
 
             const url = 'http://192.168.0.200:8080/api/board/list'
@@ -297,6 +322,8 @@
                 contentType : 'application/json',
                 success : function(response) {
                     let boardList = response
+                    console.log('검색한 결과 : ')
+                    console.log(boardList);
 
                     displayList( boardList )
 
@@ -314,7 +341,13 @@
         function displayList( boardList ) {
 
             if( boardList.length == 0 ) {
-                console.log(`조회된 데이터가 없습니다.`);
+                let msg = `조회된 데이터가 없습니다.`
+                console.log(msg);
+                let tr = `<tr>
+                            <td colspan="5">${msg}</td>
+                          </tr>
+                         `
+                $('#board-data').html(tr)
                 return
             }
 
@@ -364,6 +397,14 @@
             })
 
         }
+
+        // 페이지당 게시글 수 - 변경 이벤트
+        $('#rows').on('change', function() {
+            rows = $(this).val()
+            page = 1
+            getPageList(page, rows)
+            initPage()
+        })
 
     </script>
 </body>
