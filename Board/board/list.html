@@ -40,6 +40,7 @@
             <div class="btn-box">
                 <div class="item">
                     <select name="search-type" id="search-type" class="input-search">
+                        <option value="0">전체</option>
                         <option value="1">제목</option>
                         <option value="2">내용</option>
                         <option value="3">제목+내용</option>
@@ -104,6 +105,8 @@
         let rows = 10       // 페이지당 게시글 수
         let pageCount = 10  // 노출 페이지 개수
         let totalCount = 0  // 전체 게시글 수
+        let searchType = 0  // 검색 조건
+        let keyword = ''    // 검색어
 
         /* 게시글 목록 - 데이터 요청 */
         // getList()
@@ -113,10 +116,14 @@
         // 페이지 번호 갱신
         function initPage() {
 
+            // 페이지 번호 정보
+            // * 추가 : 검색조건, 검색어
             let data = {
-                page : page,
-                rows : rows,
-                pageCount : pageCount,
+                page        : page,
+                rows        : rows,
+                pageCount   : pageCount,
+                searchType  : searchType,
+                keyword     : keyword,
             }
 
             const url = 'http://192.168.0.200:8080/api/board/pagination'
@@ -126,7 +133,7 @@
                 data : data,
                 success : function(response) {
                     let pageInfo = response
-                    console.log(pageInfo)
+                    // console.log(pageInfo)
 
                     if( pageInfo == null ) 
                         return
@@ -145,11 +152,13 @@
 
                     let pagination = ''
                     for(let i = start ; i <= end ; i++) {
-                        let a = `<a href='javascript:;' class='page-no'>${i}</a>`
+                        let a = `<a href='javascript:;' class='page-no' data='${i}'>${i}</a>`
                         pagination += a
                     } 
 
                     $('.page-list').html(pagination)
+                    $('.page-no').removeClass('on')
+                    $('.page-no[data=' + page + ']').addClass('on')
 
                     initPageClick()     // 페이지 번호 추가 후, 이벤트 생성
 
@@ -195,7 +204,7 @@
                     let boardList = response
 
                     displayList( boardList )
-                    initPage()
+                    
                     // 여기서 부터...
                 },
                 error : function(error) {
@@ -271,9 +280,9 @@
         function search() {
             // 검색 조건    (search-type)
             // 검색어       (keyword)
-            let searchType = $('#search-type').val()
-            let keyword = $('#keyword').val()
-
+            searchType = $('#search-type').val()
+            keyword = $('#keyword').val()
+            
             let data = {
                 'searchType' : searchType,
                 'keyword' : keyword,
@@ -290,6 +299,9 @@
                     let boardList = response
 
                     displayList( boardList )
+
+                    page = 1        // 검색 시, 현재 페이지 번호 초기화
+                    initPage()
                 },
                 error : function(error) {
 
@@ -338,21 +350,19 @@
         // 페이지 번호 클릭 이벤트
         function initPageClick() {
 
-            $('.page-no').on('click', function() {
-                let clickedPage = $(this).text()
-                page = clickedPage
-                getPageList(page, rows)
-                $('.page-no').removeClass('on')
-                $(this).addClass('on')
-            })
-
-            $('.page-arrow').on('click', function() {
+            // 이벤트 제거 - 이벤트 정의가 쌓이는 것을 방지
+            $('.page-no, .page-arrow').off()
+            
+            // 페이지 번호,화살표 클릭 이벤트
+            $('.page-no, .page-arrow').on('click', function() {
                 let clickedPage = $(this).attr('data')
                 page = clickedPage
                 getPageList(page, rows)
-                $('.page-no').removeClass('on')
-                $(this).addClass('on')
+                initPage()
+                // $('.page-no').removeClass('on')
+                // $('.page-no[data=' + page + ']').addClass('on')
             })
+
         }
 
     </script>
