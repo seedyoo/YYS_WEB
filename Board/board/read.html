@@ -174,7 +174,10 @@
                         let regTime = date.toISOString().split("T")[1];
                         regTime = regTime.split(".")[0]
 
-                        let commentBox = `<div class="comment-box">
+                        // 계층번호
+                        let depthNo = comment.depthNo
+
+                        let commentBox = `<div class="comment-box" style="margin-left: ${depthNo * 60}px;">
                                             <div class="data-box">
                                                 <div class="top">
                                                     <div class="item">
@@ -216,6 +219,10 @@
 
             // 댓글 [수정] 버튼 클릭 이벤트
             $('.btn-comment-update').on('click', function() {
+
+                // 답글 작성 UI 초기화
+                $('.reply-box'). remove()
+
                 // 작성자, 내용 
                 let btn = $(this)
                 let commentNo = btn.attr('data')        // 댓글번호
@@ -249,7 +256,7 @@
                                     </div>
                                 </div>
                                 <div class="bottom">
-                                    <textarea id="input-update-content">${content}</textarea>
+                                    <textarea id="input-update-content" cols="40" rows="5">${content}</textarea>
                                     <div class="etc-box">
                                         <a href="javascript:;" id="btn-comment-update" class="btn btn-sm" data="${commentNo}">수정</a>
                                         <a href="javascript:;" id="btn-comment-delete" class="btn btn-sm" >취소</a>
@@ -343,6 +350,10 @@
             // 댓글 [답글] 클릭 이벤트
             $('.btn-reply').on('click', function() {
 
+                // 댓글 수정 상태를 초기화
+                $('.data-box').show()
+                $('.edit-box').empty()
+
                 // 부모 댓글 번호
                 let superNo = $(this).attr('data')
 
@@ -351,14 +362,14 @@
                                     <div class="edit-box">
                                         <div class="top">
                                             <div class="item">
-                                                <input type="text" id="input-reply-writer">
+                                                <input type="text" id="input-reply-writer" placeholder="작성자">
                                             </div>
                                             <div class="item">
                                                 
                                             </div>
                                         </div>
                                         <div class="bottom">
-                                            <textarea id="input-reply-content"></textarea>
+                                            <textarea id="input-reply-content" cols="40" rows="5" placeholder="댓글을 입력해주세요"></textarea>
                                             <div class="etc-box">
                                                 <a href="javascript:;" id="btn-reply-insert" class="btn btn-sm">등록</a>
                                                 <a href="javascript:;" id="btn-reply-cancel" class="btn btn-sm">취소</a>
@@ -405,6 +416,12 @@
                     })
 
 
+                })
+
+
+                // 댓글 [답글]취소 버튼 클릭 이벤트
+                $('#btn-reply-cancel').on('click', function() {
+                    $('.reply-box').remove()
                 })
 
             })
