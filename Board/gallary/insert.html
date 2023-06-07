@@ -20,7 +20,7 @@
                 <ul>
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="../board/list.html">Board</a></li>
-                    <li><a href="list.html">Gallery</a></li>
+                    <li><a href="../gallery/list.html">Gallery</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,7 +37,11 @@
                         <td class="label">썸네일</td>
                         <td class="data">
                             <div class="dropzone flex main-center sub-center">
-                                <h3>이미지를 드래그 하세요.</h3>
+                                <input type="file" id="thumbnail" >
+                                <div class="drop-img">
+                                    <h3 class="mb-20">이미지를 드래그 하세요.</h3>
+                                    <label for="thumbnail" class="btn">업로드</label>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -69,8 +73,8 @@
                     </tr>
                 </table>
             </form>
-           
 
+           
         </div>
     </section>
 
@@ -87,18 +91,43 @@
             
         })
 
-        // 드랍존에서 이미지를 벗어날 때
+        // 드랍존에서 이미지가 벗어날 때
         $('.dropzone').on('dragleave', function(e) {
-            e.preventDefault()          // 이벤트의 기본 액션 방지
+            e.preventDefault()         
             $(this).removeClass('over')
-            
+
         })
 
         // 드랍존에서 이미지를 놓았을 때
         $('.dropzone').on('drop', function(e) {
-            e.preventDefault()          // 이벤트의 기본 액션 방지
+            e.preventDefault()  
+            
+            $(this).removeClass('over')
+            
             // 파일정보 처리작업
+            // console.log(e)
+            let fileList = e.originalEvent.dataTransfer.files
+            // console.log(fileList);
+
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+
+                let reader = new FileReader()
+
+                // 파일 로드 시
+                reader.onload = function(event) {
+                    let source =  event.target.result   // 파일 데이터
+                    let img = `<img src="${source}" >`
+                    $('.drop-img').html(img)
+                }
+                
+                reader.readAsDataURL(file)
+            }
+
         })
+
+        // 파일 변경 이벤트
+
 
     </script>
 </body>
