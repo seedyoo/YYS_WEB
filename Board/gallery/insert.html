@@ -236,8 +236,8 @@
             let formData = new FormData()
 
             // 썸네일 파일 formData 추가
-            console.log(fileList)
-            formData.append("thumbnail[]", fileList[0])   // 썸네일 1개
+            if( fileList != null )
+                formData.append("thumbnail[]", fileList[0])   // 썸네일 1개
 
             let title = $('#title').val()
             let writer = $('#writer').val()
