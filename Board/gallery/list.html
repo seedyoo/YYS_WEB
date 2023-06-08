@@ -76,6 +76,8 @@
         let page = 1        // 현재 페이지 번호
         let rows = 20       // 페이지당 게시글 수
 
+        // 페이지 정보 요청
+        getPage()
         // 갤러리 목록 요청
         getList() 
 
@@ -152,8 +154,14 @@
             if( scrollTop + windowHeight >= documentHeight - 10 ) {
 
                 // 다음 페이지 요청
-                page++
-                getList()
+                if( page < lastPage ) {
+                    page++
+                    getList()
+                }
+                if( page == lastPage ) {
+                    page++
+                    alert('마지막 페이지입니다')
+                }
 
             }
 
@@ -167,7 +175,7 @@
             let data = {
                 page : page,
                 rows : rows,
-                pageCount : pageCount,
+                pageCount : 10,
             }
 
             const url = 'http://192.168.0.200:8080/api/gallery/pagination'
