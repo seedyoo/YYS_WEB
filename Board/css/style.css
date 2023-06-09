@@ -1,9 +1,10 @@
-html {
+html { 
    overflow-x: hidden;
 }
 
 /* 공통 */
 .hide { display: none; }
+
 
  /* 헤더 */
  header {
@@ -79,6 +80,53 @@ header .menu nav ul li:hover::before  {
    top: 0;
 }
 
+/* 600px 이상 - 모바일 숨김 */
+.mobile { display: none !important; }
+
+/* 헤더 반응형 */
+@media screen and (max-width: 1024px) {
+   header .menu { width: 100%; }
+}
+
+@media screen and (max-width: 600px) {
+   .pc { display: none !important; }
+   .mobile { display: flex !important; }
+
+   /* header .menu nav ul {
+      display: none;
+   } */
+
+   header .menu nav ul.mobile {
+      justify-content: space-between;
+   }
+
+   header .menu nav ul.mobile li a {
+      border: none;
+      line-height: 82px;
+   }
+
+   header .menu nav ul.mobile li a span {
+      font-size: 40px;
+   }
+   
+   
+}
+
+
+/* 사이드바 */
+#sidebar {
+   width: 70vw;
+   height: 100vh;
+   background-color: lightblue;
+   border: 1px solid royalblue;
+   position: fixed;
+   right: -70vw;
+   transition: all 0.4s;
+}
+
+#sidebar.on {
+   right: 0;
+}
 
 
  /* 메인 */
